@@ -2,6 +2,10 @@
 import React, { useState } from "react";
 import { FaUser, FaMapMarkerAlt, FaRupeeSign } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import { FiSearch, FiMapPin} from "react-icons/fi";
+import { PersonFill } from 'react-bootstrap-icons';
+
+
 
 const jobs = [
   {
@@ -82,7 +86,7 @@ export default function App() {
            </div>
           <button
             onClick={() => setShowModal(true)}
-            className="bg-blue-600 text-white px-5 py-2 rounded-full text-sm hover:bg-blue-700"
+            className="bg-purple-600 text-white px-5 py-2 rounded-full text-sm hover:bg-blue-700"
           >
             Create Jobs
           </button>
@@ -91,21 +95,41 @@ export default function App() {
 
              {/* Filters */}
          <div className="flex flex-wrap justify-center items-center gap-4 mt-6">
+          <div className="relative w-72">
+    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5">
+      <FiSearch />
+    </span>
         <input
             type="text"
             placeholder="Search By Job Title, Role"
-            className="border px-4 py-2 rounded-md w-72"
+            className="w-full pl-10 pr-4 py-2 border rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <select className="border px-4 py-2 rounded-md text-gray-600">
-            <option>Preferred Location</option>
-          </select>
-          <select className="border px-4 py-2 rounded-md text-gray-600">
-            <option>Job Type</option>
-          </select>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">Salary Per Month:</span>
-            <input type="range" min="50000" max="280000" className="w-32" />
-            <span className="text-sm text-gray-600">₹50k - ₹80k</span>
+          </div>
+          <div className="relative w-72">
+  <FiMapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
+  
+  <select className="w-full pl-10 pr-4 py-2 border rounded-md text-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none">
+    <option>Preferred Location</option>
+    <option>Hyderabad</option>
+    <option>Chennai</option>
+    <option>Remote</option>
+  </select>
+</div>
+
+<div className="relative w-72">
+  <PersonFill className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
+  <select className="w-full pl-10 pr-4 py-2 border rounded-md text-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none">
+    <option>Job Type</option>
+    <option>Full Time</option>
+    <option>Part Time</option>
+    <option>Internship</option>
+  </select>
+</div>
+
+          <div className="flex items-center gap-3 bg-gray-100 px-4 py-2 rounded-md">
+            <span className="text-sm text-gray-700 font-medium whitespace-nowrap">Salary Per Month:</span>
+            <input type="range" min="50000" max="80000" className="w-50 h-0.5 accent-black cursor-pointer"/>
+            <span className="text-sm text-black-600">₹50k - ₹80k</span>
           </div>
         </div>
       </header>
@@ -124,27 +148,39 @@ export default function App() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm text-gray-700">Job Title</label>
+                <label className="text-sm text-gray-400">Job Title</label>
                 <input className="border w-full p-2 rounded mt-1" placeholder="Full Stack Developer" />
               </div>
               <div>
-                <label className="text-sm text-gray-700">Company Name</label>
-                <input className="border w-full p-2 rounded mt-1" placeholder="Amazon, Microsoft, Swiggy" />
-              </div>
+  <label className="text-sm text-gray-400">Company Name</label>
+  <select className="border w-full p-2 rounded mt-1 text-sm text-gray-400">
+    <option disabled selected>Amazon,Microsoft,Swiggy</option>
+    <option>Amazon</option>
+    <option>Microsoft</option>
+    <option>Swiggy</option>
+    <option>Tesla</option>
+  </select>
+</div>
+
               <div>
-                <label className="text-sm text-gray-700">Location</label>
-                <select className="border w-full p-2 rounded mt-1">
-                  <option>Choose Preferred Location</option>
-                </select>
-              </div>
-              <div>
-                <label className="text-sm text-gray-700">Job Type</label>
-                <select className="border w-full p-2 rounded mt-1">
-                  <option>FullTime</option>
-                  <option>PartTime</option>
-                  <option>Internship</option>
-                </select>
-              </div>
+  <label className="text-sm text-gray-500">Location</label>
+  <select className="border text-gray-400 w-full p-2 rounded mt-1">
+    <option disabled selected>Choose Preferred Location</option>
+    <option>Chennai</option>
+    <option>Remote</option>
+  </select>
+</div>
+             <div>
+  <label className="text-sm text-gray-400">Job Type</label>
+  <select className="border w-full p-2 rounded mt-1 text-gray-600">
+    <option disabled selected>Full Time</option>
+    <option>Internship</option>
+    <option>Full Time</option>
+    <option>Part Time</option>
+    <option>Contract</option>
+  </select>
+</div>
+
               <div className="flex gap-2 col-span-2">
                 <div className="w-1/2">
                   <label className="text-sm text-gray-700">Salary Range</label>
@@ -195,7 +231,7 @@ export default function App() {
           <div key={index} className="bg-white border rounded-xl p-5 shadow hover:shadow-lg transition-all">
             <div className="flex justify-between items-center">
               {job.icon}
-              <span className="text-blue-500 text-sm font-semibold">24h Ago</span>
+              <span className="bg-blue-200 text-black-600 text-xs px-3 py-1 rounded-md">24h Ago</span>
             </div>
             <h3 className="text-lg font-semibold mt-3">{job.role}</h3>
             <div className="flex items-center text-gray-600 text-sm gap-x-4 mt-1">
@@ -209,11 +245,11 @@ export default function App() {
               <FaRupeeSign className="mr-2" /> {job.salary}
             </p>
             </div>
-            <p className="text-gray-500 text-xs mt-3 leading-relaxed">
-              A user-friendly interface lets you browse stunning photos and videos.
-              <br />
-              Filter destinations based on interests and travel style, and create personalized.
-            </p>
+            <ul className="text-gray-500 text-xs mt-3 leading-relaxed list-disc list-inside">
+               <li>A user-friendly interface lets you browse stunning photos and videos.</li>
+               <li>Filter destinations based on interests and travel style, and create personalized.</li>
+            </ul>
+
             <button className="mt-4 bg-blue-500 text-white w-full py-2 rounded-lg hover:bg-blue-600 transition">
               Apply Now
             </button>
